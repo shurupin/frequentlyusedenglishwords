@@ -19,7 +19,7 @@ import clamp from 'clamp';
 import Defaults from './Defaults.js';
 
 const viewport = Dimensions.get('window')
-const SWIPE_THRESHOLD = 120;
+const SWIPE_THRESHOLD = 40;
 
 const styles = StyleSheet.create({
   container: {
@@ -134,7 +134,7 @@ export default class SwipeCards extends Component {
     renderCard: (card) => null,
     style: styles.container,
     dragY: true,
-    smoothTransition: false
+    smoothTransition: true
   };
 
   constructor(props) {

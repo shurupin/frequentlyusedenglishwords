@@ -25,6 +25,8 @@ export default class Card extends React.Component {
       backgroundColor: 'white',
       borderWidth: 1,
       elevation: 1,
+      minWidth: '90%',
+      minHeight: '90%',
     },
     thumbnail: {
       width: 300,

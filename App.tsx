@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
-import Card from './Components/Card.js'
-import NoMoreCards from './Components/NoMoreCards.js'
-import SwipeCards from './Components/SwipeCards.js'
+import Card from './components/Card'
+import NoMoreCards from './components/NoMoreCards.js'
+import SwipeCards from './components/SwipeCards.js'
 
 const cards = [
   {name: '1', image: 'https://media.giphy.com/media/GfXFVHUzjlbOg/giphy.gif'},
@@ -34,13 +34,14 @@ export default class App extends React.Component<MyProps, MyState> {
     }
   }
 
+  /*
   handleYup (card) {
     console.log("yup")
   }
 
   handleNope (card) {
     console.log("nope")
-  }
+  }*/
 
   cardRemoved (index) {
     console.log(`The index is ${index}`);
@@ -71,39 +72,13 @@ export default class App extends React.Component<MyProps, MyState> {
 
         renderCard={(cardData) => <Card {...cardData} />}
         renderNoMoreCards={() => <NoMoreCards />}
-        showYup={true}
-        showNope={true}
+        showYup={false}
+        showNope={false}
 
-        handleYup={this.handleYup}
-        handleNope={this.handleNope}
+        // handleYup={this.handleYup}
+        // handleNope={this.handleNope}
         cardRemoved={this.cardRemoved.bind(this)}
       />
     )
   }
 }
-
-const styles = StyleSheet.create({
-  card: {
-    alignItems: 'center',
-    borderRadius: 5,
-    overflow: 'hidden',
-    borderColor: 'grey',
-    backgroundColor: 'white',
-    borderWidth: 1,
-    elevation: 1,
-  },
-  thumbnail: {
-    width: 300,
-    height: 300,
-  },
-  text: {
-    fontSize: 20,
-    paddingTop: 10,
-    paddingBottom: 10
-  },
-  noMoreCards: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  }
-})
