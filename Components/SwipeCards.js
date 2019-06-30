@@ -222,14 +222,14 @@ export default class SwipeCards extends Component {
           this.props.cardRemoved(currentIndex[this.guid]);
 
           if (this.props.smoothTransition) {
-            this._advanceState();
+            this._advanceState(hasMovedRight);
           } else {
             this.cardAnimation = Animated.decay(this.state.pan, {
               velocity: { x: velocity, y: vy },
               deceleration: 0.98
             });
             this.cardAnimation.start(status => {
-              if (status.finished) this._advanceState();
+              if (status.finished) this._advanceState(hasMovedRight);
               else this._resetState();
 
               this.cardAnimation = null;
@@ -354,11 +354,16 @@ export default class SwipeCards extends Component {
     this._animateEntrance();
   }
 
-  _advanceState() {
+  _advanceState(hasMovedRight) {
     this.state.pan.setValue({ x: 0, y: 0 });
     this.state.enter.setValue(0);
     this._animateEntrance();
-    this._goToNextCard();
+    if(hasMovedRight){
+      this._goToPrevCard();
+    }
+    else{
+      this._goToNextCard();
+    }
   }
 
   /**
