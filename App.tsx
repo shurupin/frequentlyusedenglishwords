@@ -4,7 +4,9 @@ import Card from './components/Card'
 import NoMoreCards from './components/NoMoreCards.js'
 import SwipeCards from './components/SwipeCards.js'
 
-const cards = [
+import cards from './data/cards.json';
+
+/* const cards = [
   {name: '1', image: 'https://media.giphy.com/media/GfXFVHUzjlbOg/giphy.gif'},
   {name: '2', image: 'https://media.giphy.com/media/irTuv1L1T34TC/giphy.gif'},
   {name: '3', image: 'https://media.giphy.com/media/LkLL0HJerdXMI/giphy.gif'},
@@ -14,7 +16,7 @@ const cards = [
   {name: '7', image: 'https://media.giphy.com/media/K6Q7ZCdLy8pCE/giphy.gif'},
   {name: '8', image: 'https://media.giphy.com/media/hEwST9KM0UGti/giphy.gif'},
   {name: '9', image: 'https://media.giphy.com/media/3oEduJbDtIuA2VrtS0/giphy.gif'},
-]
+] */
 
 const cards2 = [
   {name: '10', image: 'https://media.giphy.com/media/12b3E4U9aSndxC/giphy.gif'},
