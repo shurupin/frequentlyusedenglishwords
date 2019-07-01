@@ -25,12 +25,21 @@ export default class Card extends React.Component {
         null,
       );
     }
+
+    handleWordClick = (word) => {
+      this.props.handleWordClick(word);            
+    }
   
     render() {
       return (
         <View style={styles.card}>
           <Image style={styles.thumbnail} source={{uri: this.props.image}} />
           <Text style={styles.text}>This is card {this.props.name}</Text>
+          <TouchableOpacity style={styles.button} >
+            <Text style={styles.buttonText} onPress={() => this.handleWordClick("Word!!!")}>
+              Word
+            </Text>
+          </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={this._playAndPause}>
             <Text style={styles.buttonText}>
               Playing

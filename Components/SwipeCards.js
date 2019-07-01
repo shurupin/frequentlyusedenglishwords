@@ -104,7 +104,8 @@ export default class SwipeCards extends Component {
     renderCard: PropTypes.func,
     cardRemoved: PropTypes.func,
     dragY: PropTypes.bool,
-    smoothTransition: PropTypes.bool
+    smoothTransition: PropTypes.bool,
+    handleWordClick: PropTypes.func,
   };
 
   static defaultProps = {
@@ -134,7 +135,8 @@ export default class SwipeCards extends Component {
     renderCard: (card) => null,
     style: styles.container,
     dragY: true,
-    smoothTransition: true
+    smoothTransition: true,
+    handleWordClick: (word) => null,
   };
 
   constructor(props) {
@@ -246,6 +248,11 @@ export default class SwipeCards extends Component {
       }
     });
   }
+
+  handleWordClick(word) {
+    //alert("The Child HTML is: " + word);
+    console.log(word);
+ }
 
   _forceLeftSwipe() {
     this.cardAnimation = Animated.timing(this.state.pan, {
@@ -461,7 +468,7 @@ export default class SwipeCards extends Component {
     let animatedCardStyles = { transform: [{ translateX }, { translateY }, { rotate }, { scale }], opacity };
 
     return <Animated.View key={"top"} style={[styles.card, animatedCardStyles]} {... this._panResponder.panHandlers}>
-      {this.props.renderCard(this.state.card)}
+      {this.props.renderCard({ ...this.state.card, ...{ handleWordClick: this.handleWordClick } })}
     </Animated.View>;
   }
 
