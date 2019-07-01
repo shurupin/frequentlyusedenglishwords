@@ -1,11 +1,11 @@
 'use strict';
 
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 import {
-    StyleSheet,
-    Text,
-    View
+  StyleSheet,
+  Text,
+  View
 } from 'react-native';
 
 class NoMoreCards extends Component {

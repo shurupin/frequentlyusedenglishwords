@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
-import Card from './components/Card'
-import NoMoreCards from './components/NoMoreCards.js'
-import SwipeCards from './components/SwipeCards.js'
+import Card from './components/card'
+import NoMoreCards from './components/noMoreCards.js'
+import SwipeCards from './components/swipeCards.js'
 
 import cards from './data/cards.json';
 
@@ -19,13 +19,13 @@ import cards from './data/cards.json';
 ] */
 
 const cards2 = [
-  {name: '10', image: 'https://media.giphy.com/media/12b3E4U9aSndxC/giphy.gif'},
-  {name: '11', image: 'https://media4.giphy.com/media/6csVEPEmHWhWg/200.gif'},
-  {name: '12', image: 'https://media4.giphy.com/media/AA69fOAMCPa4o/200.gif'},
-  {name: '13', image: 'https://media.giphy.com/media/OVHFny0I7njuU/giphy.gif'},
+  { name: '10', image: 'https://media.giphy.com/media/12b3E4U9aSndxC/giphy.gif' },
+  { name: '11', image: 'https://media4.giphy.com/media/6csVEPEmHWhWg/200.gif' },
+  { name: '12', image: 'https://media4.giphy.com/media/AA69fOAMCPa4o/200.gif' },
+  { name: '13', image: 'https://media.giphy.com/media/OVHFny0I7njuU/giphy.gif' },
 ]
 
-type MyProps = { };
+type MyProps = {};
 type MyState = { cards: any, outOfCards: boolean };
 export default class App extends React.Component<MyProps, MyState> {
   constructor(props) {
@@ -45,7 +45,7 @@ export default class App extends React.Component<MyProps, MyState> {
     console.log("nope")
   }*/
 
-  cardRemoved (index) {
+  cardRemoved(index) {
     console.log(`The index is ${index}`);
 
     let CARD_REFRESH_LIMIT = 3

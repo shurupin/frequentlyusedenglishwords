@@ -37,6 +37,78 @@
     "image": "https://media.giphy.com/media/GfXFVHUzjlbOg/giphy.gif"
   },
   {
+    "id": "1",
+    "number": "2",
+    "word": "of",
+    "definitions": [
+      {
+        "definition": "used to show possession, belonging, or origin",
+        "examples": [
+          "a friend of mine",
+          "the president of the United States",
+          "employees of the company"
+        ]
+      },
+      {
+        "definition": "used after words or phrases expressing amount, number, or a particular unit",
+        "examples": [
+          "a kilo of apples",
+          "loads of food",
+          "hundreds of people"
+        ]
+      },
+      {
+        "definition": "containing:",
+        "examples": [
+          "a bag of sweets",
+          "a bottle of beer",
+          "a book of short stories"
+        ]
+      }
+    ],
+    "transcription": "/əv/",
+    "partOfSpeech": "preposition",
+    "level": "A1",
+    "audioUK": "https://dictionary.cambridge.org/media/english/uk_pron_ogg/u/uko/ukodd/ukodd__024.ogg",
+    "audioUS": "https://dictionary.cambridge.org/media/english/us_pron_ogg/e/eus/eus75/eus75163.ogg",
+    "name": "1",
+    "image": "https://media.giphy.com/media/GfXFVHUzjlbOg/giphy.gif"
+  },
+  {
+    "id": "2",
+    "number": "3",
+    "word": "and",
+    "definitions": [
+      {
+        "definition": "used to join two words, phrases, parts of sentences, or related statements together",
+        "examples": [
+          "Ann and Jim",
+          "boys and girls",
+          "knives and forks"
+        ]
+      },
+      {
+        "definition": "together with other similar things",
+        "examples": [
+          "schools, colleges, and so on"
+        ]
+      },
+      {
+        "definition": "and everything else:",
+        "examples": [
+          "She bought the whole lot - house, farm, horses, and all."
+        ]
+      }
+    ],
+    "transcription": "/ænd/",
+    "partOfSpeech": "conjunction",
+    "level": "A1",
+    "audioUK": "https://dictionary.cambridge.org/media/english/uk_pron_ogg/u/uka/ukana/ukanarc018.ogg",
+    "audioUS": "https://dictionary.cambridge.org/media/english/us_pron_ogg/a/and/and__/and.ogg",
+    "name": "1",
+    "image": "https://media.giphy.com/media/GfXFVHUzjlbOg/giphy.gif"
+  },
+  {
     "name": "2",
     "image": "https://media.giphy.com/media/irTuv1L1T34TC/giphy.gif"
   },
