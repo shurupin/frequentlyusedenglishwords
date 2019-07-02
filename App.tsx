@@ -28,7 +28,7 @@ const cards2 = [
 type MyProps = {};
 type MyState = { cards: any, outOfCards: boolean };
 export default class App extends React.Component<MyProps, MyState> {
-  constructor(props) {
+  constructor(props: Readonly<MyProps>) {
     super(props);
     this.state = {
       cards: cards,
@@ -45,7 +45,7 @@ export default class App extends React.Component<MyProps, MyState> {
     console.log("nope")
   }*/
 
-  cardRemoved(index) {
+  cardRemoved(index: number) {
     console.log(`The index is ${index}`);
 
     let CARD_REFRESH_LIMIT = 3
@@ -72,7 +72,7 @@ export default class App extends React.Component<MyProps, MyState> {
         cards={this.state.cards}
         loop={true}
 
-        renderCard={(cardData) => <Card {...cardData} />}
+        renderCard={(cardData: any) => <Card {...cardData} />}
         renderNoMoreCards={() => <NoMoreCards />}
         showYup={false}
         showNope={false}
@@ -80,7 +80,24 @@ export default class App extends React.Component<MyProps, MyState> {
         // handleYup={this.handleYup}
         // handleNope={this.handleNope}
         cardRemoved={this.cardRemoved.bind(this)}
+        stackOffsetY={100}
       />
     )
   }
 }
+
+const styles = StyleSheet.create({
+  swipeCards: {
+    alignItems: 'center',
+    borderRadius: 5,
+    overflow: 'hidden',
+    borderColor: 'grey',
+    backgroundColor: 'white',
+    borderWidth: 1,
+    elevation: 1,
+    minWidth: '90%',
+    maxWidth: '90%',
+    minHeight: '90%',
+    maxHeight: '100%',
+  }
+})

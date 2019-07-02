@@ -3,16 +3,32 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { Audio } from 'expo';
 import Definitions from './definitions'
 
-export default class Card extends React.Component {
-  constructor(props) {
+type TCardProps = {
+  word: string,
+  number: string,
+  transcription: string,
+  partOfSpeech: string,
+  level: string,
+  audioUK: string,
+  audioUS: string,
+  definitions: Array<{ definition: string, examples: Array<string> }>,
+  handleWordClick: (word: string) => void,
+};
+
+type TCardState = {
+  statePropertyExample: boolean,
+};
+
+export default class Card extends React.Component<TCardProps, TCardState> {
+  constructor(props: Readonly<TCardProps>) {
     super(props);
   }
 
-  _playAndPause = (audioUri) => {
+  _playAndPause = (audioUri: string) => {
     this._playRecording(audioUri);
   }
 
-  async _playRecording(audioUri) {
+  async _playRecording(audioUri: string) {
     const source = { uri: audioUri };
     const { sound } = await Audio.Sound.create(
       source,
@@ -24,7 +40,7 @@ export default class Card extends React.Component {
     );
   }
 
-  handleWordClick = (word) => {
+  handleWordClick = (word: string) => {
     this.props.handleWordClick(word);
   }
 
@@ -37,7 +53,7 @@ export default class Card extends React.Component {
         <Text style={styles.text}>transcription: {this.props.transcription}</Text>
         <Text style={styles.text}>partOfSpeech: {this.props.partOfSpeech}</Text>
         <Text style={styles.text}>level: {this.props.level}</Text>
-        <Definitions style={styles.card} definitions={this.props.definitions} />
+        <Definitions definitions={this.props.definitions} />
         <TouchableOpacity style={styles.button} >
           <Text style={styles.buttonText} onPress={() => this.handleWordClick("Word!!!")}>
             Word
@@ -67,10 +83,11 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderWidth: 1,
     elevation: 1,
-    minWidth: '90%',
-    maxWidth: '90%',
-    minHeight: '90%',
-    maxHeight: '100%',
+    minWidth: '95%',
+    maxWidth: '95%',
+    minHeight: '95%',
+    maxHeight: '95%',
+    marginTop: '7%',
   },
   thumbnail: {
     width: 300,

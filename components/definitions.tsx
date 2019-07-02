@@ -18,15 +18,16 @@ export default class Definitions extends React.Component<TDefinitionsProps, TDef
         statePropertyExample: false
     };
 
-    onTextPress = (e, str) => {
+    onTextPress = (_e: any, str: string) => {
         console.log(str);
     }
 
     getTexts = (definition: string) => {
-        return <Text key={definition}>{definition.split(' ').map((word, index) => {
+        const words = definition.split(' ');
+        return <Text key={definition}>{words.map((word, index) => {
             return (
                 <Text key={index} onPress={(e) => this.onTextPress(e, word)}>
-                    {`${word}${index !== (definition.split(' ').length - 1) ? ' ' : '\n'}`}
+                    {`${word}${index !== (words.length - 1) ? ' ' : ''}`}
                 </Text>
             )
         })}</Text>;
@@ -36,6 +37,6 @@ export default class Definitions extends React.Component<TDefinitionsProps, TDef
     render() {
         const { statePropertyExample } = this.state;
         const { definitions } = this.props;
-        return <Text>{definitions.map(x => this.getTexts(x.definition))}</Text>;
+        return <View>{definitions.map(x => this.getTexts(x.definition))}</View>;
     }
 }
