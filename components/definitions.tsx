@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 
 type TDefinitionsProps = {
-    definitions: Array<{ definition: string, examples: Array<string> }>,
+    definitions: Array<{ definition: string, examples: Array<string> }>
 };
 
 type TDefinitionsState = {
@@ -37,6 +37,13 @@ export default class Definitions extends React.Component<TDefinitionsProps, TDef
     render() {
         const { statePropertyExample } = this.state;
         const { definitions } = this.props;
-        return <View>{definitions.map(x => this.getTexts(x.definition))}</View>;
+        return <View style={styles.definitions}>{definitions.map(x => this.getTexts(x.definition))}</View>;
     }
 }
+
+const styles = StyleSheet.create({
+    definitions: {
+      minWidth: '96%',
+      maxWidth: '96%',
+    },
+  })

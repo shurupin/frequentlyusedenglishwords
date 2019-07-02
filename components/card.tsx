@@ -83,11 +83,11 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderWidth: 1,
     elevation: 1,
-    minWidth: '95%',
-    maxWidth: '95%',
-    minHeight: '95%',
-    maxHeight: '95%',
-    marginTop: '7%',
+    minWidth: '98%',
+    maxWidth: '98%',
+    minHeight: '96%',
+    maxHeight: '96%',
+    marginTop: '6%',
   },
   thumbnail: {
     width: 300,
@@ -109,5 +109,5 @@ const styles = StyleSheet.create({
   buttonText: {
     textAlign: 'center',
     backgroundColor: 'transparent',
-  },
+  }
 })

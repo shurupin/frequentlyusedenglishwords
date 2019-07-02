@@ -85,19 +85,3 @@ export default class App extends React.Component<MyProps, MyState> {
     )
   }
 }
-
-const styles = StyleSheet.create({
-  swipeCards: {
-    alignItems: 'center',
-    borderRadius: 5,
-    overflow: 'hidden',
-    borderColor: 'grey',
-    backgroundColor: 'white',
-    borderWidth: 1,
-    elevation: 1,
-    minWidth: '90%',
-    maxWidth: '90%',
-    minHeight: '90%',
-    maxHeight: '100%',
-  }
-})
