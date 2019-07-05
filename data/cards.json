@@ -1,7 +1,7 @@
 [
   {
-    "id": "0",
-    "number": "1",
+    "id": 0,
+    "number": 1,
     "word": "the",
     "definitions": [
       {
@@ -10,7 +10,8 @@
           "I just bought a new shirt and some new shoes. The shirt was pretty expensive, but the shoes weren't.",
           "Please would you pass the salt.",
           "I'll pick you up at the airport."
-        ]
+        ],
+        "definition2":[{"word":"used", "id": 345},{"word":"before", "id": 23423},{"word":"nouns"}]
       },
       {
         "definition": "used before some nouns that refer to place when you want to mention that type of place, without showing exactly which example of the place you mean",
@@ -18,14 +19,16 @@
           "We spent all day at the beach.",
           "Let's go to the movies this evening.",
           "I have to go to the bank and get some Euros."
-        ]
+        ],
+        "definition2":[{"word":"used", "id": 345},{"word":"before", "id": 23423},{"word":"some", "id": 23452}]
       },
       {
         "definition": "used before noun phrases in which the range of meaning of the noun is limited in some way",
         "examples": [
           "I really enjoyed the book I've just finished reading.",
           "Do you like the other kids in your class?"
-        ]
+        ],
+        "definition2":[{"word":"used", "id": 345},{"word":"before", "id": 23423},{"word":"noun"}]
       }
     ],
     "transcription": "/ðiː/",
@@ -37,8 +40,8 @@
     "image": "https://media.giphy.com/media/GfXFVHUzjlbOg/giphy.gif"
   },
   {
-    "id": "1",
-    "number": "2",
+    "id": 1,
+    "number": 2,
     "word": "of",
     "definitions": [
       {
@@ -47,7 +50,8 @@
           "a friend of mine",
           "the president of the United States",
           "employees of the company"
-        ]
+        ],
+        "definition2":[{"word":"used", "id": 345},{"word":"to", "id": 42354},{"word":"show", "id": 234}]
       },
       {
         "definition": "used after words or phrases expressing amount, number, or a particular unit",
@@ -75,8 +79,8 @@
     "image": "https://media.giphy.com/media/GfXFVHUzjlbOg/giphy.gif"
   },
   {
-    "id": "2",
-    "number": "3",
+    "id": 2,
+    "number": 3,
     "word": "and",
     "definitions": [
       {
@@ -109,35 +113,37 @@
     "image": "https://media.giphy.com/media/GfXFVHUzjlbOg/giphy.gif"
   },
   {
-    "name": "2",
+    "id": 3,
+    "number": 4,
+    "name": 2,
     "image": "https://media.giphy.com/media/irTuv1L1T34TC/giphy.gif"
   },
   {
-    "name": "3",
+    "name": 3,
     "image": "https://media.giphy.com/media/LkLL0HJerdXMI/giphy.gif"
   },
   {
-    "name": "4",
+    "name": 4,
     "image": "https://media.giphy.com/media/fFBmUMzFL5zRS/giphy.gif"
   },
   {
-    "name": "5",
+    "name": 5,
     "image": "https://media.giphy.com/media/oDLDbBgf0dkis/giphy.gif"
   },
   {
-    "name": "6",
+    "name": 6,
     "image": "https://media.giphy.com/media/7r4g8V2UkBUcw/giphy.gif"
   },
   {
-    "name": "7",
+    "name": 7,
     "image": "https://media.giphy.com/media/K6Q7ZCdLy8pCE/giphy.gif"
   },
   {
-    "name": "8",
+    "name": 8,
     "image": "https://media.giphy.com/media/hEwST9KM0UGti/giphy.gif"
   },
   {
-    "name": "9",
+    "name": 9,
     "image": "https://media.giphy.com/media/3oEduJbDtIuA2VrtS0/giphy.gif"
   }
 ]

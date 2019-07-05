@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="95379861-2160-4d71-b063-3448a3cf9181" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../app.json" beforeDir="false" afterPath="$PROJECT_DIR$/../app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../components/definitions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../components/definitions.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../data/cards.json" beforeDir="false" afterPath="$PROJECT_DIR$/../data/cards.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,8 +26,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
       <pane id="Scope" />
+      <pane id="ProjectPane" />
       <pane id="PackagesPane" />
     </panes>
   </component>
