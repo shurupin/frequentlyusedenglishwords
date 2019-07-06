@@ -3,19 +3,8 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
-import {
-  StyleSheet,
-  Text,
-  View,
-  Animated,
-  PanResponder,
-  Dimensions,
-  Image
-} from 'react-native';
-
+import { Animated, Dimensions, Image, PanResponder, StyleSheet, Text, View } from 'react-native';
 import clamp from 'clamp';
-
 import Defaults from './defaults.js';
 
 const viewport = Dimensions.get('window')
@@ -136,7 +125,7 @@ export default class SwipeCards extends Component {
     style: styles.container,
     dragY: true,
     smoothTransition: true,
-    handleWordClick: (word) => null,
+    handleWordClick: (id, word) => null,
   };
 
   constructor(props) {
@@ -248,9 +237,8 @@ export default class SwipeCards extends Component {
     });
   }
 
-  handleWordClick(word) {
-    //alert("The Child HTML is: " + word);
-    console.log(word);
+  handleWordClick(id, word) {
+    console.log(`id: ${id}, word: ${word}`);
   }
 
   _forceLeftSwipe() {

@@ -1,18 +1,18 @@
-import React from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { Audio } from 'expo';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import Definitions from './definitions'
+import React from 'react';
 
 type TCardProps = {
-  word: string,
-  number: string,
-  transcription: string,
-  partOfSpeech: string,
-  level: string,
   audioUK: string,
   audioUS: string,
-  definitions: Array<{ definition: string, examples: Array<string> }>,
+  definitions: { definition: string, examples: string[], definition2: any[], examples2: any[] }[],
   handleWordClick: (word: string) => void,
+  level: string,
+  number: string,
+  partOfSpeech: string,
+  transcription: string,
+  word: string,
 };
 
 type TCardState = {
@@ -33,8 +33,8 @@ export default class Card extends React.Component<TCardProps, TCardState> {
     const { sound } = await Audio.Sound.create(
       source,
       {
-        shouldPlay: true,
         isLooping: false,
+        shouldPlay: true,
       },
       null,
     );
@@ -45,26 +45,38 @@ export default class Card extends React.Component<TCardProps, TCardState> {
   }
 
   render() {
+    const { 
+      audioUK, 
+      audioUS,
+      definitions, 
+      handleWordClick, 
+      level, 
+      number, 
+      partOfSpeech, 
+      transcription, 
+      word, 
+     } = this.props;
+
     return (
       <View style={styles.card}>
         {/* <Image style={styles.thumbnail} source={{uri: this.props.image}} /> */}
-        <Text style={styles.word}>{this.props.word}</Text>
-        <Text style={styles.text}>Number: {this.props.number}</Text>
-        <Text style={styles.text}>transcription: {this.props.transcription}</Text>
-        <Text style={styles.text}>partOfSpeech: {this.props.partOfSpeech}</Text>
-        <Text style={styles.text}>level: {this.props.level}</Text>
-        <Definitions definitions={this.props.definitions} />
+        <Text style={styles.word}>{word}</Text>
+        <Text style={styles.text}>Number: {number}</Text>
+        <Text style={styles.text}>transcription: {transcription}</Text>
+        <Text style={styles.text}>partOfSpeech: {partOfSpeech}</Text>
+        <Text style={styles.text}>level: {level}</Text>
+        <Definitions definitions={definitions} handleWordClick={handleWordClick} />
         <TouchableOpacity style={styles.button} >
           <Text style={styles.buttonText} onPress={() => this.handleWordClick("Word!!!")}>
             Word
             </Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => this._playAndPause(this.props.audioUK)}>
+        <TouchableOpacity style={styles.button} onPress={() => this._playAndPause(audioUK)}>
           <Text style={styles.buttonText}>
             Play UK
             </Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => this._playAndPause(this.props.audioUS)}>
+        <TouchableOpacity style={styles.button} onPress={() => this._playAndPause(audioUS)}>
           <Text style={styles.buttonText}>
             Play US
             </Text>
@@ -77,43 +89,43 @@ export default class Card extends React.Component<TCardProps, TCardState> {
 const styles = StyleSheet.create({
   card: {
     alignItems: 'center',
-    borderRadius: 5,
-    overflow: 'hidden',
-    borderColor: 'grey',
     backgroundColor: 'white',
+    borderColor: 'grey',
+    borderRadius: 5,
     borderWidth: 1,
     elevation: 1,
-    minWidth: '98%',
+    marginTop: '6%',
+    maxHeight: '96%',
     maxWidth: '98%',
     minHeight: '96%',
-    maxHeight: '96%',
-    marginTop: '6%',
+    minWidth: '98%',
+    overflow: 'hidden',
   },
   thumbnail: {
-    width: 300,
     height: 300,
+    width: 300,
   },
   text: {
     fontSize: 20,
-    paddingTop: 10,
     paddingBottom: 10,
+    paddingTop: 10,
   },
   word: {
     fontSize: 20,
-    paddingTop: 30,
+    fontWeight: 'bold',
     paddingBottom: 10,
-    fontWeight: 'bold'
+    paddingTop: 30,
   },
   button: {
-    width: 50,
-    height: 50 / 1.618,
-    margin: 5,
-    borderRadius: 10,
     backgroundColor: '#fff',
+    borderRadius: 10,
+    height: 50 / 1.618,
     justifyContent: 'center',
+    margin: 5,
+    width: 50,
   },
   buttonText: {
-    textAlign: 'center',
     backgroundColor: 'transparent',
+    textAlign: 'center',
   }
 })

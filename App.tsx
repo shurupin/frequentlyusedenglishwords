@@ -1,10 +1,9 @@
-import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import Card from './components/card'
-import NoMoreCards from './components/noMoreCards.js'
-import SwipeCards from './components/swipeCards.js'
-
 import cards from './data/cards.json';
+import NoMoreCards from './components/noMoreCards.js'
+import React from 'react';
+import SwipeCards from './components/swipeCards.js'
 
 /* const cards = [
   {name: '1', image: 'https://media.giphy.com/media/GfXFVHUzjlbOg/giphy.gif'},
@@ -67,17 +66,15 @@ export default class App extends React.Component<MyProps, MyState> {
   render() {
     return (
       <SwipeCards
+        // handleNope={this.handleNope}
+        // handleYup={this.handleYup}
+        cardRemoved={this.cardRemoved.bind(this)}
         cards={this.state.cards}
         loop={true}
-
         renderCard={(cardData: any) => <Card {...cardData} />}
         renderNoMoreCards={() => <NoMoreCards />}
-        showYup={false}
         showNope={false}
-
-        // handleYup={this.handleYup}
-        // handleNope={this.handleNope}
-        cardRemoved={this.cardRemoved.bind(this)}
+        showYup={false}
         stackOffsetY={100}
       />
     )

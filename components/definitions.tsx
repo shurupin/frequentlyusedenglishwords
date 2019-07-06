@@ -3,7 +3,8 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import classnames from 'classnames';
 
 type TDefinitionsProps = {
-    definitions: ({ definition: string, examples: string[], definition2: ({ word: string, id?: number })[], examples2: ({ word: string, id?: number }[])[] })[]
+    definitions: ({ definition: string, examples: string[], definition2: ({ word: string, id?: number })[], examples2: ({ word: string, id?: number }[])[] })[],
+    handleWordClick: (id: number, word: string) => void,
 };
 
 type TDefinitionsState = {
@@ -40,11 +41,12 @@ export default class Definitions extends React.Component<TDefinitionsProps, TDef
 
     getTexts2 = (definition: { definition2: any, examples2: any[] }) => {
         const { definition2, examples2 } = definition;
+        const { handleWordClick } = this.props;
         return <Fragment key={Math.random()}>
             <Text key={Math.random()}>
                 {definition2.map((item: { word: string; id: number; }, index: number) => {
                     return (
-                        <Text key={Math.random()} style={item.id >= 0 ? styles.hasLink : styles.hasNoLink} onPress={(e) => this.onTextPress2(e, item)}>
+                        <Text key={Math.random()} style={item.id >= 0 ? styles.hasLink : styles.hasNoLink} onPress={() => handleWordClick(item.id, item.word)}>
                             {`${item.word}${index !== (definition2.length - 1) ? ' ' : ''}`}
                         </Text>
                     )
@@ -55,8 +57,8 @@ export default class Definitions extends React.Component<TDefinitionsProps, TDef
                     {examples2.map((example: any[], index: number) => {
                         return <Text key={Math.random()}>{example.map((item: { word: string; id: number; }, index: number) => {
                             return (
-                                <Text key={Math.random()} style={item.id >= 0 ? styles.hasLink : styles.hasNoLink} onPress={(e) => this.onTextPress2(e, item)}>
-                                    {`${item.word}${index !== (examples2.length - 1) ? ' ' : ''}`}
+                                <Text key={Math.random()} style={item.id >= 0 ? styles.hasLink : styles.hasNoLink} onPress={() => handleWordClick(item.id, item.word)}>
+                                    {`${item.word}${index !== (example.length - 1) ? ' ' : ''}`}
                                 </Text>
                             )
                         })}</Text>
@@ -64,7 +66,6 @@ export default class Definitions extends React.Component<TDefinitionsProps, TDef
                 </Fragment>}
         </Fragment>;
     }
-
 
     render() {
         const { statePropertyExample } = this.state;
@@ -75,15 +76,15 @@ export default class Definitions extends React.Component<TDefinitionsProps, TDef
 
 const styles = StyleSheet.create({
     definitions: {
-        minWidth: '96%',
         maxWidth: '96%',
+        minWidth: '96%',
     },
     hasNoLink: {
+        color: 'black',
         textDecorationLine: 'none',
-        color: 'black'
     },
     hasLink: {
+        color: 'mediumblue',
         textDecorationLine: 'underline',
-        color: 'mediumblue'
     },
 })
