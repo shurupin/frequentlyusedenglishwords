@@ -48,7 +48,7 @@ export default class Card extends React.Component<TCardProps, TCardState> {
     return (
       <View style={styles.card}>
         {/* <Image style={styles.thumbnail} source={{uri: this.props.image}} /> */}
-        <Text style={styles.text}>Word: {this.props.word}</Text>
+        <Text style={styles.word}>{this.props.word}</Text>
         <Text style={styles.text}>Number: {this.props.number}</Text>
         <Text style={styles.text}>transcription: {this.props.transcription}</Text>
         <Text style={styles.text}>partOfSpeech: {this.props.partOfSpeech}</Text>
@@ -96,7 +96,13 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 20,
     paddingTop: 10,
-    paddingBottom: 10
+    paddingBottom: 10,
+  },
+  word: {
+    fontSize: 20,
+    paddingTop: 30,
+    paddingBottom: 10,
+    fontWeight: 'bold'
   },
   button: {
     width: 50,

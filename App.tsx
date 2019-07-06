@@ -61,9 +61,7 @@ export default class App extends React.Component<MyProps, MyState> {
           outOfCards: true
         })
       }
-
     }
-
   }
 
   render() {

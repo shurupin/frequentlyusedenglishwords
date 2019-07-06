@@ -11,7 +11,12 @@
           "Please would you pass the salt.",
           "I'll pick you up at the airport."
         ],
-        "definition2":[{"word":"used", "id": 345},{"word":"before", "id": 23423},{"word":"nouns"}]
+        "definition2":[{"word":"used", "id": 345},{"word":"before", "id": 0},{"word":"nouns"}],
+        "examples2": [
+          [{"word":"I", "id": 34545},{"word":"just", "id": 234254},{"word":"bought"}],
+          [{"word":"Please"},{"word":"would", "id": 23454},{"word":"you"}],
+          [{"word":"I'll"},{"word":"pick", "id": 234},{"word":"you"}]
+        ]
       },
       {
         "definition": "used before some nouns that refer to place when you want to mention that type of place, without showing exactly which example of the place you mean",
@@ -59,7 +64,8 @@
           "a kilo of apples",
           "loads of food",
           "hundreds of people"
-        ]
+        ],
+        "definition2":[{"word":"used", "id": 345},{"word":"after", "id": 2454},{"word":"words", "id": 3423}]
       },
       {
         "definition": "containing:",
@@ -67,7 +73,8 @@
           "a bag of sweets",
           "a bottle of beer",
           "a book of short stories"
-        ]
+        ],
+        "definition2":[{"word":"containing", "id": 4536}]
       }
     ],
     "transcription": "/əv/",
