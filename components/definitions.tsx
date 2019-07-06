@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
-import classnames from 'classnames';
 
 type TDefinitionsProps = {
     definitions: ({ definition: string, examples: string[], definition2: ({ word: string, id?: number })[], examples2: ({ word: string, id?: number }[])[] })[],

@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View, Image } from 'react-native';
 import Card from './components/card'
 import cards from './data/cards.json';
-import NoMoreCards from './components/noMoreCards.js'
+import NoMoreCards from './components/noMoreCards'
 import React from 'react';
-import SwipeCards from './components/swipeCards.js'
+import SwipeCards from './components/swipeCards'
 
 /* const cards = [
   {name: '1', image: 'https://media.giphy.com/media/GfXFVHUzjlbOg/giphy.gif'},

@@ -7,7 +7,7 @@ type TCardProps = {
   audioUK: string,
   audioUS: string,
   definitions: { definition: string, examples: string[], definition2: any[], examples2: any[] }[],
-  handleWordClick: (word: string) => void,
+  handleWordClick: (id: number,word: string) => void,
   level: string,
   number: string,
   partOfSpeech: string,
@@ -40,9 +40,9 @@ export default class Card extends React.Component<TCardProps, TCardState> {
     );
   }
 
-  handleWordClick = (word: string) => {
+/*   handleWordClick = (word: string) => {
     this.props.handleWordClick(word);
-  }
+  } */
 
   render() {
     const { 
@@ -67,7 +67,7 @@ export default class Card extends React.Component<TCardProps, TCardState> {
         <Text style={styles.text}>level: {level}</Text>
         <Definitions definitions={definitions} handleWordClick={handleWordClick} />
         <TouchableOpacity style={styles.button} >
-          <Text style={styles.buttonText} onPress={() => this.handleWordClick("Word!!!")}>
+          <Text style={styles.buttonText} onPress={() => handleWordClick(-1, "test")}>
             Word
             </Text>
         </TouchableOpacity>

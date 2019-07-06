@@ -239,6 +239,10 @@ export default class SwipeCards extends Component {
 
   handleWordClick(id, word) {
     console.log(`id: ${id}, word: ${word}`);
+
+    if(id>=0){
+      this._advanceStateById(id);
+    }
   }
 
   _forceLeftSwipe() {
@@ -293,6 +297,23 @@ export default class SwipeCards extends Component {
     this.setState({
       card: this.state.cards[currentIndex[this.guid]]
     });
+  }
+
+  _goToCardById(id) {
+    if (id >= 0) {
+      currentIndex[this.guid] = id;
+
+      // Checks to see if last card.
+      // If props.loop=true, will start again from the first card.
+      if (currentIndex[this.guid] > this.state.cards.length - 1 && this.props.loop) {
+        this.props.onLoop();
+        currentIndex[this.guid] = 0;
+      }
+
+      this.setState({
+        card: this.state.cards[currentIndex[this.guid]]
+      });
+    }
   }
 
   _goToPrevCard() {
@@ -360,6 +381,15 @@ export default class SwipeCards extends Component {
     }
     else {
       this._goToNextCard();
+    }
+  }
+
+  _advanceStateById(id) {
+    if (id >= 0) {
+      this.state.pan.setValue({ x: 0, y: 0 });
+      this.state.enter.setValue(0);
+      this._animateEntrance();
+      this._goToCardById(id);
     }
   }
 
@@ -455,7 +485,7 @@ export default class SwipeCards extends Component {
     let animatedCardStyles = { transform: [{ translateX }, { translateY }, { rotate }, { scale }], opacity };
 
     return <Animated.View key={"top"} style={[styles.card, animatedCardStyles]} {... this._panResponder.panHandlers}>
-      {this.props.renderCard({ ...this.state.card, ...{ handleWordClick: this.handleWordClick } })}
+      {this.props.renderCard({ ...this.state.card, ...{ handleWordClick: this.handleWordClick.bind(this) } })}
     </Animated.View>;
   }
 
