@@ -13,6 +13,7 @@ type TCardProps = {
   partOfSpeech: string,
   transcription: string,
   word: string,
+  isConnected: boolean,
 };
 
 type TCardState = {
@@ -55,6 +56,7 @@ export default class Card extends React.Component<TCardProps, TCardState> {
       partOfSpeech, 
       transcription, 
       word, 
+      isConnected,
      } = this.props;
 
     return (
@@ -71,16 +73,16 @@ export default class Card extends React.Component<TCardProps, TCardState> {
             Word
             </Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => this._playAndPause(audioUK)}>
+        {isConnected && <TouchableOpacity style={styles.button} onPress={() => this._playAndPause(audioUK)}>
           <Text style={styles.buttonText}>
             Play UK
             </Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => this._playAndPause(audioUS)}>
+        </TouchableOpacity>}
+        {isConnected && <TouchableOpacity style={styles.button} onPress={() => this._playAndPause(audioUS)}>
           <Text style={styles.buttonText}>
             Play US
             </Text>
-        </TouchableOpacity>
+        </TouchableOpacity>}
       </View>
     )
   }

@@ -3,7 +3,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Animated, Dimensions, Image, PanResponder, StyleSheet, Text, View } from 'react-native';
+import { Animated, Dimensions, Image, PanResponder, StyleSheet, Text, View, NetInfo } from 'react-native';
 import clamp from 'clamp';
 import Defaults from './defaults.js';
 
@@ -121,7 +121,7 @@ export default class SwipeCards extends Component {
     onDragStart: () => { },
     onDragRelease: () => { },
     cardRemoved: (ix) => null,
-    renderCard: (card) => null,
+    renderCard: (cardData) => null,
     style: styles.container,
     dragY: true,
     smoothTransition: true,
@@ -142,7 +142,14 @@ export default class SwipeCards extends Component {
       enter: new Animated.Value(0.5),
       cards: [].concat(this.props.cards),
       card: this.props.cards[currentIndex[this.guid]],
+      isConnected: true,
     };
+
+    NetInfo.isConnected.fetch().then(isConnected => {
+      if(this.state.isConnected != isConnected){
+        this.setState({ isConnected: isConnected });
+      }
+    });
 
     this.lastX = 0;
     this.lastY = 0;
@@ -483,9 +490,13 @@ export default class SwipeCards extends Component {
     let scale = enter;
 
     let animatedCardStyles = { transform: [{ translateX }, { translateY }, { rotate }, { scale }], opacity };
-
+    const cardData = {
+      ...this.state.card,
+      ...{ handleWordClick: this.handleWordClick.bind(this) },
+      ...{ isConnected: this.state.isConnected },
+    };
     return <Animated.View key={"top"} style={[styles.card, animatedCardStyles]} {... this._panResponder.panHandlers}>
-      {this.props.renderCard({ ...this.state.card, ...{ handleWordClick: this.handleWordClick.bind(this) } })}
+      {this.props.renderCard(cardData)}
     </Animated.View>;
   }
 
