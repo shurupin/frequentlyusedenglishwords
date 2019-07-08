@@ -1,4 +1,4 @@
-import { Audio } from 'expo';
+import { Audio } from 'expo-av';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import Definitions from './definitions'
 import React from 'react';
@@ -7,7 +7,7 @@ type TCardProps = {
   audioUK: string,
   audioUS: string,
   definitions: { definition: string, examples: string[], definition2: any[], examples2: any[] }[],
-  handleWordClick: (id: number,word: string) => void,
+  handleWordClick: (id: number, word: string) => void,
   level: string,
   number: string,
   partOfSpeech: string,
@@ -17,7 +17,7 @@ type TCardProps = {
 };
 
 type TCardState = {
-  statePropertyExample: boolean,
+  backgroundColor: string,
 };
 
 export default class Card extends React.Component<TCardProps, TCardState> {
@@ -31,7 +31,7 @@ export default class Card extends React.Component<TCardProps, TCardState> {
 
   async _playRecording(audioUri: string) {
     const source = { uri: audioUri };
-    const { sound } = await Audio.Sound.create(
+    const { sound } = await Audio.Sound.createAsync(
       source,
       {
         isLooping: false,
@@ -41,26 +41,29 @@ export default class Card extends React.Component<TCardProps, TCardState> {
     );
   }
 
-/*   handleWordClick = (word: string) => {
-    this.props.handleWordClick(word);
-  } */
+  /*   handleWordClick = (word: string) => {
+      this.props.handleWordClick(word);
+    } */
 
   render() {
-    const { 
-      audioUK, 
+    const {
+      audioUK,
       audioUS,
-      definitions, 
-      handleWordClick, 
-      level, 
-      number, 
-      partOfSpeech, 
-      transcription, 
-      word, 
+      definitions,
+      handleWordClick,
+      level,
+      number,
+      partOfSpeech,
+      transcription,
+      word,
       isConnected,
-     } = this.props;
+    } = this.props;
+
+    const backgroundColors = ['lavender', 'dodgerblue', 'cornflowerblue',];
+    const randomBackgroundColor = backgroundColors[Math.floor(Math.random() * backgroundColors.length)];
 
     return (
-      <View style={styles.card}>
+      <View style={[styles.card, { backgroundColor: randomBackgroundColor }]}>
         {/* <Image style={styles.thumbnail} source={{uri: this.props.image}} /> */}
         <Text style={styles.word}>{word}</Text>
         <Text style={styles.text}>Number: {number}</Text>
