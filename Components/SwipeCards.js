@@ -3,7 +3,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Animated, Dimensions, Image, PanResponder, StyleSheet, Text, View, NetInfo } from 'react-native';
+import { Animated, AsyncStorage, Dimensions, Image, PanResponder, StyleSheet, Text, View, NetInfo } from 'react-native';
 import clamp from 'clamp';
 import Defaults from './defaults.js';
 
@@ -130,9 +130,10 @@ export default class SwipeCards extends Component {
 
   constructor(props) {
     super(props);
-
+    
     //Use a persistent variable to track currentIndex instead of a local one.
-    this.guid = this.props.guid || guid++;
+    this.guid = this.props.guid || guid;
+    guid = guid + 1;
     if (!currentIndex[this.guid]) {
       currentIndex[this.guid] = 0;
     }
@@ -244,6 +245,24 @@ export default class SwipeCards extends Component {
     });
   }
 
+  _storeCurrentIndex = async (value) => {
+    try {
+      AsyncStorage.setItem('savedCurrentIndex', value.toString());
+    } catch (error) {
+      // Error saving data
+    }
+  };
+
+  _retrieveCurrentIndex = async () => {
+    try {
+      let value = await AsyncStorage.getItem('savedCurrentIndex');
+      currentIndex[this.guid] = Number(value);
+      this.setState({ card: this.state.cards[currentIndex[this.guid]] });
+    } catch (error) {
+      // Error retrieving data
+    }
+  };
+
   handleWordClick(id, word) {
     console.log(`id: ${id}, word: ${word}`);
 
@@ -292,13 +311,15 @@ export default class SwipeCards extends Component {
   }
 
   _goToNextCard() {
-    currentIndex[this.guid]++;
+    currentIndex[this.guid] = currentIndex[this.guid] + 1;
+    this._storeCurrentIndex(currentIndex[this.guid]);
 
     // Checks to see if last card.
     // If props.loop=true, will start again from the first card.
     if (currentIndex[this.guid] > this.state.cards.length - 1 && this.props.loop) {
       this.props.onLoop();
       currentIndex[this.guid] = 0;
+      this._storeCurrentIndex(currentIndex[this.guid]);
     }
 
     this.setState({
@@ -309,12 +330,14 @@ export default class SwipeCards extends Component {
   _goToCardById(id) {
     if (id >= 0) {
       currentIndex[this.guid] = id;
+      this._storeCurrentIndex(currentIndex[this.guid]);
 
       // Checks to see if last card.
       // If props.loop=true, will start again from the first card.
       if (currentIndex[this.guid] > this.state.cards.length - 1 && this.props.loop) {
         this.props.onLoop();
         currentIndex[this.guid] = 0;
+        this._storeCurrentIndex(currentIndex[this.guid]);
       }
 
       this.setState({
@@ -328,10 +351,12 @@ export default class SwipeCards extends Component {
     this.state.enter.setValue(0);
     this._animateEntrance();
 
-    currentIndex[this.guid]--;
+    currentIndex[this.guid] = currentIndex[this.guid]-1;
+    this._storeCurrentIndex(currentIndex[this.guid]);
 
     if (currentIndex[this.guid] < 0) {
       currentIndex[this.guid] = 0;
+      this._storeCurrentIndex(currentIndex[this.guid]);
     }
 
     this.setState({
@@ -341,6 +366,7 @@ export default class SwipeCards extends Component {
 
   componentDidMount() {
     this._animateEntrance();
+    this._retrieveCurrentIndex();
   }
 
   _animateEntrance() {
@@ -359,6 +385,7 @@ export default class SwipeCards extends Component {
       }
 
       currentIndex[this.guid] = 0;
+      this._storeCurrentIndex(currentIndex[this.guid]);
       this.setState({
         cards: [].concat(nextProps.cards),
         card: nextProps.cards[0]

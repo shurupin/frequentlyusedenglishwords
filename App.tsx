@@ -1,8 +1,8 @@
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, TextInput, View, Image } from 'react-native';
 import Card from './components/card'
 import cards from './data/cards.json';
 import NoMoreCards from './components/noMoreCards'
-import React from 'react';
+import React, { Fragment } from 'react';
 import SwipeCards from './components/swipeCards'
 
 /* const cards = [
@@ -65,18 +65,37 @@ export default class App extends React.Component<MyProps, MyState> {
 
   render() {
     return (
-      <SwipeCards
-        // handleNope={this.handleNope}
-        // handleYup={this.handleYup}
-        cardRemoved={this.cardRemoved.bind(this)}
-        cards={this.state.cards}
-        loop={true}
-        renderCard={(cardData: any) => <Card {...cardData} />}
-        renderNoMoreCards={() => <NoMoreCards />}
-        showNope={false}
-        showYup={false}
-        stackOffsetY={100}
-      />
+      <Fragment>
+        <TextInput
+          style={styles.textInput}
+          placeholder="enter word or number"
+          maxLength={20}
+        />
+        <SwipeCards
+          // handleNope={this.handleNope}
+          // handleYup={this.handleYup}
+          cardRemoved={this.cardRemoved.bind(this)}
+          cards={this.state.cards}
+          loop={true}
+          renderCard={(cardData: any) => <Card {...cardData} />}
+          renderNoMoreCards={() => <NoMoreCards />}
+          showNope={false}
+          showYup={false}
+          stackOffsetY={100}
+        />
+      </Fragment>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  textInput: {
+    borderColor: '#CCCCCC',
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
+    height: 50,
+    fontSize: 25,
+    paddingLeft: 20,
+    paddingRight: 20,
+  }  
+})
