@@ -59,11 +59,11 @@ export default class Card extends React.Component<TCardProps, TCardState> {
       isConnected,
     } = this.props;
 
-    const backgroundColors = ['lavender', 'dodgerblue', 'cornflowerblue',];
-    const randomBackgroundColor = backgroundColors[Math.floor(Math.random() * backgroundColors.length)];
+    //const backgroundColors = ['lavender', 'dodgerblue', 'cornflowerblue',];
+    //const randomBackgroundColor = backgroundColors[Math.floor(Math.random() * backgroundColors.length)];
 
     return (
-      <View style={[styles.card, { backgroundColor: randomBackgroundColor }]}>
+      <View style={[styles.card/*, { backgroundColor: randomBackgroundColor }*/]}>
         {/* <Image style={styles.thumbnail} source={{uri: this.props.image}} /> */}
         <Text style={styles.word}>{word}</Text>
         <Text style={styles.text}>Number: {number}</Text>
@@ -94,7 +94,7 @@ export default class Card extends React.Component<TCardProps, TCardState> {
 const styles = StyleSheet.create({
   card: {
     alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor: 'cornflowerblue',
     borderColor: 'grey',
     borderRadius: 5,
     borderWidth: 1,

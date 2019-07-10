@@ -17,12 +17,14 @@ import SwipeCards from './components/swipeCards'
   {name: '9', image: 'https://media.giphy.com/media/3oEduJbDtIuA2VrtS0/giphy.gif'},
 ] */
 
+/*
 const cards2 = [
   { name: '10', image: 'https://media.giphy.com/media/12b3E4U9aSndxC/giphy.gif' },
   { name: '11', image: 'https://media4.giphy.com/media/6csVEPEmHWhWg/200.gif' },
   { name: '12', image: 'https://media4.giphy.com/media/AA69fOAMCPa4o/200.gif' },
   { name: '13', image: 'https://media.giphy.com/media/OVHFny0I7njuU/giphy.gif' },
 ]
+*/
 
 type MyProps = {};
 type MyState = { cards: any, outOfCards: boolean };
@@ -44,6 +46,7 @@ export default class App extends React.Component<MyProps, MyState> {
     console.log("nope")
   }*/
 
+  /*
   cardRemoved(index: number) {
     console.log(`The index is ${index}`);
 
@@ -62,6 +65,7 @@ export default class App extends React.Component<MyProps, MyState> {
       }
     }
   }
+  */
 
   render() {
     return (
@@ -74,7 +78,7 @@ export default class App extends React.Component<MyProps, MyState> {
         <SwipeCards
           // handleNope={this.handleNope}
           // handleYup={this.handleYup}
-          cardRemoved={this.cardRemoved.bind(this)}
+          //cardRemoved={this.cardRemoved.bind(this)}
           cards={this.state.cards}
           loop={true}
           renderCard={(cardData: any) => <Card {...cardData} />}

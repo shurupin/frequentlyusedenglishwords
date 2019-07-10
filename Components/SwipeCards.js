@@ -59,8 +59,9 @@ const styles = StyleSheet.create({
 });
 
 //Components could be unloaded and loaded and we will loose the users currentIndex, we can persist it here.
+let history = [];
 let currentIndex = {};
-let guid = 0;
+//let guid = 0;
 
 export default class SwipeCards extends Component {
 
@@ -91,7 +92,7 @@ export default class SwipeCards extends Component {
     noView: PropTypes.element,
     onClickHandler: PropTypes.func,
     renderCard: PropTypes.func,
-    cardRemoved: PropTypes.func,
+    //cardRemoved: PropTypes.func,
     dragY: PropTypes.bool,
     smoothTransition: PropTypes.bool,
     handleWordClick: PropTypes.func,
@@ -120,7 +121,7 @@ export default class SwipeCards extends Component {
     onClickHandler: () => { alert('tap') },
     onDragStart: () => { },
     onDragRelease: () => { },
-    cardRemoved: (ix) => null,
+    //cardRemoved: (ix) => null,
     renderCard: (cardData) => null,
     style: styles.container,
     dragY: true,
@@ -132,8 +133,8 @@ export default class SwipeCards extends Component {
     super(props);
     
     //Use a persistent variable to track currentIndex instead of a local one.
-    this.guid = this.props.guid || guid;
-    guid = guid + 1;
+    this.guid = this.props.guid || 0;
+    //guid = guid + 1;
     if (!currentIndex[this.guid]) {
       currentIndex[this.guid] = 0;
     }
@@ -220,7 +221,7 @@ export default class SwipeCards extends Component {
             return;
           };
 
-          this.props.cardRemoved(currentIndex[this.guid]);
+          //this.props.cardRemoved(currentIndex[this.guid]);
 
           if (this.props.smoothTransition) {
             this._advanceState(hasMovedRight);
@@ -281,7 +282,7 @@ export default class SwipeCards extends Component {
       this.cardAnimation = null;
     }
     );
-    this.props.cardRemoved(currentIndex[this.guid]);
+    //this.props.cardRemoved(currentIndex[this.guid]);
   }
 
   _forceUpSwipe() {
@@ -294,7 +295,7 @@ export default class SwipeCards extends Component {
       this.cardAnimation = null;
     }
     );
-    this.props.cardRemoved(currentIndex[this.guid]);
+    //this.props.cardRemoved(currentIndex[this.guid]);
   }
 
   _forceRightSwipe() {
@@ -307,10 +308,11 @@ export default class SwipeCards extends Component {
       this.cardAnimation = null;
     }
     );
-    this.props.cardRemoved(currentIndex[this.guid]);
+    //this.props.cardRemoved(currentIndex[this.guid]);
   }
 
   _goToNextCard() {
+    history.push(currentIndex[this.guid]);
     currentIndex[this.guid] = currentIndex[this.guid] + 1;
     this._storeCurrentIndex(currentIndex[this.guid]);
 
@@ -320,6 +322,7 @@ export default class SwipeCards extends Component {
       this.props.onLoop();
       currentIndex[this.guid] = 0;
       this._storeCurrentIndex(currentIndex[this.guid]);
+      //history.push(currentIndex[this.guid]);
     }
 
     this.setState({
@@ -329,6 +332,7 @@ export default class SwipeCards extends Component {
 
   _goToCardById(id) {
     if (id >= 0) {
+      history.push(currentIndex[this.guid]);
       currentIndex[this.guid] = id;
       this._storeCurrentIndex(currentIndex[this.guid]);
 
@@ -338,6 +342,7 @@ export default class SwipeCards extends Component {
         this.props.onLoop();
         currentIndex[this.guid] = 0;
         this._storeCurrentIndex(currentIndex[this.guid]);
+        //history.push(currentIndex[this.guid]);
       }
 
       this.setState({
@@ -351,7 +356,8 @@ export default class SwipeCards extends Component {
     this.state.enter.setValue(0);
     this._animateEntrance();
 
-    currentIndex[this.guid] = currentIndex[this.guid]-1;
+    const previousId = history.length > 0 ? history.pop() : currentIndex[this.guid]-1;
+    currentIndex[this.guid] = previousId;
     this._storeCurrentIndex(currentIndex[this.guid]);
 
     if (currentIndex[this.guid] < 0) {
