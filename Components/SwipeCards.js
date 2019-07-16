@@ -1,14 +1,11 @@
 /* Gratefully copied from https://github.com/brentvatne/react-native-animated-demo-tinder */
 'use strict';
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { Animated, AsyncStorage, Dimensions, Image, PanResponder, StyleSheet, Text, View, NetInfo } from 'react-native';
+import { Animated, AsyncStorage, Dimensions, Image, PanResponder, Keyboard, StyleSheet, Text, TextInput, View, NetInfo } from 'react-native';
 import clamp from 'clamp';
 import Defaults from './defaults.js';
-
-const viewport = Dimensions.get('window')
-const SWIPE_THRESHOLD = 40;
 
 const styles = StyleSheet.create({
   container: {
@@ -55,13 +52,27 @@ const styles = StyleSheet.create({
   nopeText: {
     fontSize: 16,
     color: 'red',
+  },
+  textInput: {
+    marginTop: '6%',
+    borderColor: '#CCCCCC',
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
+    height: 50,
+    fontSize: 25,
+    paddingLeft: 20,
+    paddingRight: 20,
   }
 });
+
+const viewport = Dimensions.get('window')
+const SWIPE_THRESHOLD = 40;
 
 //Components could be unloaded and loaded and we will loose the users currentIndex, we can persist it here.
 let history = [];
 let currentIndex = {};
 //let guid = 0;
+
 
 export default class SwipeCards extends Component {
 
@@ -118,7 +129,7 @@ export default class SwipeCards extends Component {
     nopeText: "Nope!",
     maybeText: "Maybe!",
     yupText: "Yup!",
-    onClickHandler: () => { alert('tap') },
+    onClickHandler: () => { /*alert('tap');*/ },
     onDragStart: () => { },
     onDragRelease: () => { },
     //cardRemoved: (ix) => null,
@@ -131,7 +142,7 @@ export default class SwipeCards extends Component {
 
   constructor(props) {
     super(props);
-    
+
     //Use a persistent variable to track currentIndex instead of a local one.
     this.guid = this.props.guid || 0;
     //guid = guid + 1;
@@ -145,10 +156,11 @@ export default class SwipeCards extends Component {
       cards: [].concat(this.props.cards),
       card: this.props.cards[currentIndex[this.guid]],
       isConnected: true,
+      searchInput: ''
     };
 
     NetInfo.isConnected.fetch().then(isConnected => {
-      if(this.state.isConnected != isConnected){
+      if (this.state.isConnected != isConnected) {
         this.setState({ isConnected: isConnected });
       }
     });
@@ -267,7 +279,7 @@ export default class SwipeCards extends Component {
   handleWordClick(id, word) {
     console.log(`id: ${id}, word: ${word}`);
 
-    if(id>=0){
+    if (id >= 0) {
       this._advanceStateById(id);
     }
   }
@@ -356,7 +368,7 @@ export default class SwipeCards extends Component {
     this.state.enter.setValue(0);
     this._animateEntrance();
 
-    const previousId = history.length > 0 ? history.pop() : currentIndex[this.guid]-1;
+    const previousId = history.length > 0 ? history.pop() : currentIndex[this.guid] - 1;
     currentIndex[this.guid] = previousId;
     this._storeCurrentIndex(currentIndex[this.guid]);
 
@@ -368,6 +380,41 @@ export default class SwipeCards extends Component {
     this.setState({
       card: this.state.cards[currentIndex[this.guid]]
     });
+  }
+
+  onChangeText = (searchInput) => {
+    this.setState({ searchInput });
+    //console.log(searchInput);
+  }
+
+  handleKeyDown = (e) => {
+    console.log(e.nativeEvent.key);
+    if (e.nativeEvent.key == "Enter") {
+      console.log("Enter");
+      //dismissKeyboard();
+    }
+  }
+
+  onSubmitEditing = () => {
+    if (this.state.searchInput) {
+      const number = parseInt(this.state.searchInput, 10);
+      if (!isNaN(number)) {
+        if (number >= 1 && number <= 10000) {
+          Keyboard.dismiss();
+          const id = number - 1;
+          this._advanceStateById(id);
+          this.setState({ searchInput: '' });
+        }
+      }
+      else {
+        const card = this.state.cards.find(card => card.word == this.state.searchInput.toLowerCase());
+        if (card) {
+          Keyboard.dismiss();
+          this._advanceStateById(card.id);
+          this.setState({ searchInput: '' });
+        }
+      }
+    }
   }
 
   componentDidMount() {
@@ -613,12 +660,25 @@ export default class SwipeCards extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        {this.props.stack ? this.renderStack() : this.renderCard()}
-        {this.renderNope()}
-        {this.renderMaybe()}
-        {this.renderYup()}
-      </View>
+      <Fragment>
+        <TextInput
+          style={styles.textInput}
+          placeholder="enter word or number"
+          maxLength={20}
+          value={this.state.searchInput}
+          onSubmitEditing={() => this.onSubmitEditing()}
+          onChangeText={(searchInput) => this.onChangeText(searchInput)}
+          returnKeyType='search'
+          onKeyPress={(e) => this.handleKeyDown(e)}
+          blurOnSubmit={false}
+        />
+        <View style={styles.container}>
+          {this.props.stack ? this.renderStack() : this.renderCard()}
+          {this.renderNope()}
+          {this.renderMaybe()}
+          {this.renderYup()}
+        </View>
+      </Fragment>
     );
   }
 }

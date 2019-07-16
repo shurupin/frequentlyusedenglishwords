@@ -69,37 +69,18 @@ export default class App extends React.Component<MyProps, MyState> {
 
   render() {
     return (
-      <Fragment>
-        <TextInput
-          style={styles.textInput}
-          placeholder="enter word or number"
-          maxLength={20}
-        />
-        <SwipeCards
-          // handleNope={this.handleNope}
-          // handleYup={this.handleYup}
-          //cardRemoved={this.cardRemoved.bind(this)}
-          cards={this.state.cards}
-          loop={true}
-          renderCard={(cardData: any) => <Card {...cardData} />}
-          renderNoMoreCards={() => <NoMoreCards />}
-          showNope={false}
-          showYup={false}
-          stackOffsetY={100}
-        />
-      </Fragment>
+      <SwipeCards
+        // handleNope={this.handleNope}
+        // handleYup={this.handleYup}
+        //cardRemoved={this.cardRemoved.bind(this)}
+        cards={this.state.cards}
+        loop={true}
+        renderCard={(cardData: any) => <Card {...cardData} />}
+        renderNoMoreCards={() => <NoMoreCards />}
+        showNope={false}
+        showYup={false}
+        stackOffsetY={100}
+      />
     )
   }
 }
-
-const styles = StyleSheet.create({
-  textInput: {
-    borderColor: '#CCCCCC',
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
-    height: 50,
-    fontSize: 25,
-    paddingLeft: 20,
-    paddingRight: 20,
-  }  
-})
