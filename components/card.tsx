@@ -30,7 +30,7 @@ export default class Card extends React.Component<TCardProps, TCardState> {
   }
 
   async _playRecording(audioUri: string) {
-    const source = { uri: audioUri };
+    const source = { uri: 'https://dictionary.cambridge.org' + audioUri };
     const { sound } = await Audio.Sound.createAsync(
       source,
       {
@@ -66,22 +66,22 @@ export default class Card extends React.Component<TCardProps, TCardState> {
       <View style={[styles.card/*, { backgroundColor: randomBackgroundColor }*/]}>
         {/* <Image style={styles.thumbnail} source={{uri: this.props.image}} /> */}
         <Text style={styles.word}>{word}</Text>
-        <Text style={styles.text}>Number: {number}</Text>
-        <Text style={styles.text}>transcription: {transcription}</Text>
-        <Text style={styles.text}>partOfSpeech: {partOfSpeech}</Text>
-        <Text style={styles.text}>level: {level}</Text>
+        <Text style={styles.text}>{number}</Text>
+        <Text style={styles.text}>{transcription}</Text>
+        {partOfSpeech && <Text style={styles.text}>{partOfSpeech}</Text>}
+        <Text style={styles.text}>{level}</Text>
         <Definitions definitions={definitions} handleWordClick={handleWordClick} />
-        <TouchableOpacity style={styles.button} >
+{/*         <TouchableOpacity style={styles.button} >
           <Text style={styles.buttonText} onPress={() => handleWordClick(-1, "test")}>
             Word
             </Text>
-        </TouchableOpacity>
-        {isConnected && <TouchableOpacity style={styles.button} onPress={() => this._playAndPause(audioUK)}>
+        </TouchableOpacity> */}
+        {isConnected && audioUK && <TouchableOpacity style={styles.button} onPress={() => this._playAndPause(audioUK)}>
           <Text style={styles.buttonText}>
             Play UK
             </Text>
         </TouchableOpacity>}
-        {isConnected && <TouchableOpacity style={styles.button} onPress={() => this._playAndPause(audioUS)}>
+        {isConnected && audioUS && <TouchableOpacity style={styles.button} onPress={() => this._playAndPause(audioUS)}>
           <Text style={styles.buttonText}>
             Play US
             </Text>

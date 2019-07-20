@@ -5,7 +5,7 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Animated, AsyncStorage, Dimensions, Image, PanResponder, Keyboard, StyleSheet, Text, TextInput, View, NetInfo } from 'react-native';
 import clamp from 'clamp';
-import Defaults from './defaults.js';
+import Defaults from './defaults';
 
 const styles = StyleSheet.create({
   container: {
@@ -279,8 +279,9 @@ export default class SwipeCards extends Component {
   handleWordClick(id, word) {
     console.log(`id: ${id}, word: ${word}`);
 
-    if (id >= 0) {
-      this._advanceStateById(id);
+    const idValue = parseInt(id, 10);
+    if (!isNaN(idValue) && idValue >= 0) {
+      this._advanceStateById(idValue);
     }
   }
 

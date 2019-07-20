@@ -45,7 +45,7 @@ export default class Definitions extends React.Component<TDefinitionsProps, TDef
             <Text key={Math.random()}>
                 {definition2.map((item: { word: string; id: number; }, index: number) => {
                     return (
-                        <Text key={Math.random()} style={item.id >= 0 ? styles.hasLink : styles.hasNoLink} onPress={() => handleWordClick(item.id, item.word)}>
+                        <Text key={Math.random()} style={item.id != null && item.id >= 0 ? styles.hasLink : styles.hasNoLink} onPress={() => handleWordClick(item.id, item.word)}>
                             {`${item.word}${index !== (definition2.length - 1) ? ' ' : ''}`}
                         </Text>
                     )
@@ -56,7 +56,7 @@ export default class Definitions extends React.Component<TDefinitionsProps, TDef
                     {examples2.map((example: any[], index: number) => {
                         return <Text key={Math.random()}>{example.map((item: { word: string; id: number; }, index: number) => {
                             return (
-                                <Text key={Math.random()} style={item.id >= 0 ? styles.hasLink : styles.hasNoLink} onPress={() => handleWordClick(item.id, item.word)}>
+                                <Text key={Math.random()} style={[item.id != null && item.id >= 0 ? styles.hasLink : styles.hasNoLink, {fontStyle: 'italic'}]} onPress={() => handleWordClick(item.id, item.word)}>
                                     {`${item.word}${index !== (example.length - 1) ? ' ' : ''}`}
                                 </Text>
                             )
@@ -84,6 +84,6 @@ const styles = StyleSheet.create({
     },
     hasLink: {
         color: 'mediumblue',
-        textDecorationLine: 'underline',
+        //textDecorationLine: 'underline',
     },
 })

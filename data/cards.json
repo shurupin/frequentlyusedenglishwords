@@ -39,8 +39,8 @@
     "transcription": "/ðiː/",
     "partOfSpeech": "determiner",
     "level": "A1",
-    "audioUK": "https://dictionary.cambridge.org/media/english/uk_pron_ogg/e/epd/epd33/epd33125.ogg",
-    "audioUS": "https://dictionary.cambridge.org/media/english/us_pron_ogg/t/the/the_0/the_01_00.ogg",
+    "audioUK": "/media/english/uk_pron_ogg/e/epd/epd33/epd33125.ogg",
+    "audioUS": "/media/english/us_pron_ogg/t/the/the_0/the_01_00.ogg",
     "name": "1",
     "image": "https://media.giphy.com/media/GfXFVHUzjlbOg/giphy.gif"
   },
@@ -80,8 +80,8 @@
     "transcription": "/əv/",
     "partOfSpeech": "preposition",
     "level": "A1",
-    "audioUK": "https://dictionary.cambridge.org/media/english/uk_pron_ogg/u/uko/ukodd/ukodd__024.ogg",
-    "audioUS": "https://dictionary.cambridge.org/media/english/us_pron_ogg/e/eus/eus75/eus75163.ogg",
+    "audioUK": "/media/english/uk_pron_ogg/u/uko/ukodd/ukodd__024.ogg",
+    "audioUS": "/media/english/us_pron_ogg/e/eus/eus75/eus75163.ogg",
     "name": "1",
     "image": "https://media.giphy.com/media/GfXFVHUzjlbOg/giphy.gif"
   },
