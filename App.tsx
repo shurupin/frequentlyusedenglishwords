@@ -1,9 +1,9 @@
 import { StyleSheet, Text, TextInput, View, Image } from 'react-native';
-import Card from './testFolderName/card'
+import Card from './components/card'
 import cards from './data/cards.json';
-import NoMoreCards from './testFolderName/noMoreCards'
+import NoMoreCards from './components/noMoreCards'
 import React, { Fragment } from 'react';
-import SwipeCards from './testFolderName/swipeCards'
+import SwipeCards from './components/swipeCards'
 
 /* const cards = [
   {name: '1', image: 'https://media.giphy.com/media/GfXFVHUzjlbOg/giphy.gif'},
