@@ -68,23 +68,14 @@ export default class Card extends React.Component<TCardProps, TCardState> {
         <Text style={styles.word}>{word}</Text>
         <Text style={styles.text}>{number}</Text>
         <Text style={styles.text}>{transcription}</Text>
-        {partOfSpeech && <Text style={styles.text}>{partOfSpeech}</Text>}
-        <Text style={styles.text}>{level}</Text>
+        {!!partOfSpeech && <Text style={styles.text}>{partOfSpeech}</Text>}
+        {!!level && <Text style={styles.text}>{level}</Text>}
         <Definitions definitions={definitions} handleWordClick={handleWordClick} />
-{/*         <TouchableOpacity style={styles.button} >
-          <Text style={styles.buttonText} onPress={() => handleWordClick(-1, "test")}>
-            Word
-            </Text>
-        </TouchableOpacity> */}
-        {isConnected && audioUK && <TouchableOpacity style={styles.button} onPress={() => this._playAndPause(audioUK)}>
-          <Text style={styles.buttonText}>
-            Play UK
-            </Text>
+        {!!isConnected && !!audioUK && <TouchableOpacity style={styles.button} onPress={() => this._playAndPause(audioUK)}>
+          <Text style={styles.buttonText}>Play UK</Text>
         </TouchableOpacity>}
-        {isConnected && audioUS && <TouchableOpacity style={styles.button} onPress={() => this._playAndPause(audioUS)}>
-          <Text style={styles.buttonText}>
-            Play US
-            </Text>
+        {!!isConnected && !!audioUS && <TouchableOpacity style={styles.button} onPress={() => this._playAndPause(audioUS)}>
+          <Text style={styles.buttonText}>Play US</Text>
         </TouchableOpacity>}
       </View>
     )

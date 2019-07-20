@@ -54,14 +54,14 @@ const styles = StyleSheet.create({
     color: 'red',
   },
   textInput: {
-    marginTop: '6%',
+    marginTop: '7%',
     borderColor: '#CCCCCC',
     borderTopWidth: 1,
     borderBottomWidth: 1,
-    height: 50,
+    height: 45,
     fontSize: 25,
-    paddingLeft: 20,
-    paddingRight: 20,
+    paddingLeft: '2%',
+    //paddingRight: 20,
   }
 });
 

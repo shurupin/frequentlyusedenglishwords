@@ -38,7 +38,7 @@ export default class Definitions extends React.Component<TDefinitionsProps, TDef
         console.log(`word: ${item.word}, id: ${item.id}`);
     }
 
-    getTexts2 = (definition: { definition2: any, examples2: any[] }) => {
+    getTexts2 = (definition: { definition2: any, examples2: any[] }, definitionIndex: number) => {
         const { definition2, examples2 } = definition;
         const { handleWordClick } = this.props;
         return <Fragment key={Math.random()}>
@@ -46,7 +46,7 @@ export default class Definitions extends React.Component<TDefinitionsProps, TDef
                 {definition2.map((item: { word: string; id: number; }, index: number) => {
                     return (
                         <Text key={Math.random()} style={item.id != null && item.id >= 0 ? styles.hasLink : styles.hasNoLink} onPress={() => handleWordClick(item.id, item.word)}>
-                            {`${item.word}${index !== (definition2.length - 1) ? ' ' : ''}`}
+                            {`${index === 0 ? ((definitionIndex + 1).toString() + '. ') : ''}${item.word}${index !== (definition2.length - 1) ? ' ' : ''}`}
                         </Text>
                     )
                 })}
@@ -69,7 +69,7 @@ export default class Definitions extends React.Component<TDefinitionsProps, TDef
     render() {
         const { statePropertyExample } = this.state;
         const { definitions } = this.props;
-        return <View style={styles.definitions}>{definitions.map(definition => this.getTexts2(definition))}</View>;
+        return <View style={styles.definitions}>{definitions.map((definition, definitionIndex) => this.getTexts2(definition, definitionIndex))}</View>;
     }
 }
 
