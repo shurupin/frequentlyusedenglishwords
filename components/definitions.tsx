@@ -46,7 +46,7 @@ export default class Definitions extends React.Component<TDefinitionsProps, TDef
                 {definition2.map((item: { word: string; id: number; }, index: number) => {
                     return (
                         <Text key={Math.random()} style={item.id != null && item.id >= 0 ? styles.hasLink : styles.hasNoLink} onPress={() => handleWordClick(item.id, item.word)}>
-                            {`${index === 0 ? ((definitionIndex + 1).toString() + '. ') : ''}${item.word}${index !== (definition2.length - 1) ? ' ' : ''}`}
+                            {`${item.word}`}
                         </Text>
                     )
                 })}
@@ -57,7 +57,7 @@ export default class Definitions extends React.Component<TDefinitionsProps, TDef
                         return <Text key={Math.random()}>{example.map((item: { word: string; id: number; }, index: number) => {
                             return (
                                 <Text key={Math.random()} style={[item.id != null && item.id >= 0 ? styles.hasLink : styles.hasNoLink, {fontStyle: 'italic'}]} onPress={() => handleWordClick(item.id, item.word)}>
-                                    {`${item.word}${index !== (example.length - 1) ? ' ' : ''}`}
+                                    {`${item.word}`}
                                 </Text>
                             )
                         })}</Text>
