@@ -1,6 +1,15 @@
 import { StyleSheet, Text, TextInput, View, Image } from 'react-native';
 import Card from './components/card'
-import cards from './data/cards.json';
+import cards0 from './data/cards0.json';
+import cards1 from './data/cards1.json';
+import cards2 from './data/cards2.json';
+import cards3 from './data/cards3.json';
+import cards4 from './data/cards4.json';
+import cards5 from './data/cards5.json';
+import cards6 from './data/cards6.json';
+import cards7 from './data/cards7.json';
+import cards8 from './data/cards8.json';
+import cards9 from './data/cards9.json';
 import NoMoreCards from './components/noMoreCards'
 import React, { Fragment } from 'react';
 import SwipeCards from './components/swipeCards'
@@ -32,7 +41,7 @@ export default class App extends React.Component<MyProps, MyState> {
   constructor(props: Readonly<MyProps>) {
     super(props);
     this.state = {
-      cards: cards,
+      cards: cards0.concat(cards1).concat(cards2).concat(cards3).concat(cards4).concat(cards5).concat(cards6).concat(cards7).concat(cards8).concat(cards9),
       outOfCards: false
     }
   }
