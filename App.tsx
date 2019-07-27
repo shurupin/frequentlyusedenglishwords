@@ -1,15 +1,15 @@
-import { StyleSheet, Text, TextInput, View, Image } from 'react-native';
-import Card from './components/card'
-import cards0 from './data/cards0.json';
-import cards1 from './data/cards1.json';
-import cards2 from './data/cards2.json';
-import cards3 from './data/cards3.json';
-import cards4 from './data/cards4.json';
-import cards5 from './data/cards5.json';
-import cards6 from './data/cards6.json';
-import cards7 from './data/cards7.json';
-import cards8 from './data/cards8.json';
-import cards9 from './data/cards9.json';
+import { AsyncStorage, StyleSheet, Text, TextInput, View, Image } from 'react-native';
+import Card from './components/card';
+//import cards0 from './data/cards0.json';
+// import cards1 from './data/cards1.json';
+// import cards2 from './data/cards2.json';
+// import cards3 from './data/cards3.json';
+// import cards4 from './data/cards4.json';
+// import cards5 from './data/cards5.json';
+// import cards6 from './data/cards6.json';
+// import cards7 from './data/cards7.json';
+// import cards8 from './data/cards8.json';
+// import cards9 from './data/cards9.json';
 import NoMoreCards from './components/noMoreCards'
 import React, { Fragment } from 'react';
 import SwipeCards from './components/swipeCards'
@@ -36,14 +36,123 @@ const cards2 = [
 */
 
 type MyProps = {};
-type MyState = { cards: any, outOfCards: boolean };
+type MyState = { cards: any[], outOfCards: boolean };
 export default class App extends React.Component<MyProps, MyState> {
   constructor(props: Readonly<MyProps>) {
     super(props);
+    this.importCards0 = this.importCards0.bind(this);
+    this.importCards1 = this.importCards1.bind(this);
+    this.importCards2 = this.importCards2.bind(this);
+    this.importCards3 = this.importCards3.bind(this);
+    this.importCards4 = this.importCards4.bind(this);
+    this.importCards5 = this.importCards5.bind(this);
+    this.importCards6 = this.importCards6.bind(this);
+    this.importCards7 = this.importCards7.bind(this);
+    this.importCards8 = this.importCards8.bind(this);
+    this.importCards9 = this.importCards9.bind(this);
+    this.funcMap = {
+      '0': this.importCards0,
+      '1': this.importCards1,
+      '2': this.importCards2,
+      '3': this.importCards3,
+      '4': this.importCards4,
+      '5': this.importCards5,
+      '6': this.importCards6,
+      '7': this.importCards7,
+      '8': this.importCards8,
+      '9': this.importCards9
+  };
+
     this.state = {
-      cards: cards0.concat(cards1).concat(cards2).concat(cards3).concat(cards4).concat(cards5).concat(cards6).concat(cards7).concat(cards8).concat(cards9),
-      outOfCards: false
+      cards: [],
+      outOfCards: false,
+      currentIndex: 0,
+      loadedModules: []
     }
+
+    console.log(`constructor`);
+
+    this._retrieveCurrentIndex2();
+    const index = Math.floor(this.state.currentIndex/1000);
+    (this.funcMap[index.toString()])();
+    this.state.loadedModules.push(index);
+    console.log(`loadedModules: ${this.state.loadedModules}`)
+  }
+
+  async componentDidMount() {
+    debugger;
+    console.log(`componentDidMount`);
+
+    const index = Math.floor(this.state.currentIndex/1000);
+    if(index <= 8){
+       await (this.funcMap[(index+1).toString()])();
+       this.setState({ loadedModules: [...this.state.loadedModules, ...[index+1]] });
+       console.log(`loadedModules: ${this.state.loadedModules}`)
+     }
+     if(index >= 1){
+       await (this.funcMap[(index-1).toString()])();
+       this.setState({ loadedModules: [...this.state.loadedModules, ...[index-1]] });
+       console.log(`loadedModules: ${this.state.loadedModules}`)
+     } 
+
+    for (const key in this.funcMap) {
+      if (!this.state.loadedModules.includes(Number(key))) {
+        await this.funcMap[key.toString()]();
+        this.setState({ loadedModules: [...this.state.loadedModules, ...[key]] });
+        console.log(`loadedModules: ${this.state.loadedModules}`)
+        }
+    }
+  }
+
+  _retrieveCurrentIndex2() {
+    AsyncStorage.getItem("savedCurrentIndex").then((value) => {
+      this.setState({currentIndex: Number(value)});
+    });
+  };
+
+  async importCards0() {
+    const cards = (await import('./data/cards0.json')).default;
+    this.setState({ cards: [...this.state.cards, ...cards] });
+    console.log(`count of cards (from 0): ${this.state.cards.length}`)
+  }
+
+  async importCards1() {
+    const cards = (await import('./data/cards1.json')).default;
+    this.setState({ cards: [...this.state.cards, ...cards] });
+    console.log(`count of cards (from 1): ${this.state.cards.length}`)
+  }
+  async importCards2() {
+    const cards = (await import('./data/cards2.json')).default;
+    this.setState({ cards: [...this.state.cards, ...cards] });
+    console.log(`count of cards (from 2): ${this.state.cards.length}`)
+  } async importCards3() {
+    const cards = (await import('./data/cards3.json')).default;
+    this.setState({ cards: [...this.state.cards, ...cards] });
+    console.log(`count of cards (from 3): ${this.state.cards.length}`)
+  } async importCards4() {
+    const cards = (await import('./data/cards4.json')).default;
+    this.setState({ cards: [...this.state.cards, ...cards] });
+    console.log(`count of cards (from 4): ${this.state.cards.length}`)
+  } async importCards5() {
+    const cards = (await import('./data/cards5.json')).default;
+    this.setState({ cards: [...this.state.cards, ...cards] });
+    console.log(`count of cards (from 5): ${this.state.cards.length}`)
+  } async importCards6() {
+    const cards = (await import('./data/cards6.json')).default;
+    this.setState({ cards: [...this.state.cards, ...cards] });
+    console.log(`count of cards (from 6): ${this.state.cards.length}`)
+  } async importCards7() {
+    const cards = (await import('./data/cards7.json')).default;
+    this.setState({ cards: [...this.state.cards, ...cards] });
+    console.log(`count of cards (from 7): ${this.state.cards.length}`)
+  } async importCards8() {
+    const cards = (await import('./data/cards8.json')).default;
+    this.setState({ cards: [...this.state.cards, ...cards] });
+    console.log(`count of cards (from 8): ${this.state.cards.length}`)
+  } async importCards9() {
+    const cards = (await import('./data/cards9.json')).default;
+    this.setState({ cards: [...this.state.cards, ...cards] });
+    console.log(`count of cards (from 9): ${this.state.cards.length}`)
   }
 
   /*
@@ -77,6 +186,7 @@ export default class App extends React.Component<MyProps, MyState> {
   */
 
   render() {
+    console.log(`render`);
     return (
       <SwipeCards
         // handleNope={this.handleNope}

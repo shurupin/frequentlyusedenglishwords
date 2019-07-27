@@ -359,7 +359,7 @@ export default class SwipeCards extends Component {
       }
 
       this.setState({
-        card: this.state.cards[currentIndex[this.guid]]
+        card: this.state.cards.find(x => x.id == currentIndex[this.guid])
       });
     }
   }
