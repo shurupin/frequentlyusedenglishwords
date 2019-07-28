@@ -408,7 +408,7 @@ export default class SwipeCards extends Component {
         }
       }
       else {
-        const card = this.state.cards.find(card => card.word == this.state.searchInput.toLowerCase());
+        const card = this.state.cards.find(card => card.w == this.state.searchInput.toLowerCase());
         if (card) {
           Keyboard.dismiss();
           this._advanceStateById(card.id);

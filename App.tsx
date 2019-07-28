@@ -1,15 +1,15 @@
 import { StyleSheet, Text, TextInput, View, Image } from 'react-native';
 import Card from './components/card'
-import cards0 from './data/cards0.json';
-import cards1 from './data/cards1.json';
-import cards2 from './data/cards2.json';
-import cards3 from './data/cards3.json';
-import cards4 from './data/cards4.json';
-import cards5 from './data/cards5.json';
-import cards6 from './data/cards6.json';
-import cards7 from './data/cards7.json';
-import cards8 from './data/cards8.json';
-import cards9 from './data/cards9.json';
+import cards0 from './assets/cards0.json';
+import cards1 from './assets/cards1.json';
+import cards2 from './assets/cards2.json';
+import cards3 from './assets/cards3.json';
+import cards4 from './assets/cards4.json';
+import cards5 from './assets/cards5.json';
+import cards6 from './assets/cards6.json';
+import cards7 from './assets/cards7.json';
+import cards8 from './assets/cards8.json';
+import cards9 from './assets/cards9.json';
 import NoMoreCards from './components/noMoreCards'
 import React, { Fragment } from 'react';
 import SwipeCards from './components/swipeCards'
@@ -41,7 +41,7 @@ export default class App extends React.Component<MyProps, MyState> {
   constructor(props: Readonly<MyProps>) {
     super(props);
     this.state = {
-      cards: cards0.concat(cards1).concat(cards2).concat(cards3).concat(cards4).concat(cards5).concat(cards6).concat(cards7).concat(cards8).concat(cards9),
+      cards: [...cards0, ...cards1, ...cards2, ...cards3, ...cards4, ...cards5, ...cards6, ...cards7, ...cards8, ...cards9],
       outOfCards: false
     }
   }

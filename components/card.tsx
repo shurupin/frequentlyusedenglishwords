@@ -4,15 +4,15 @@ import Definitions from './definitions'
 import React from 'react';
 
 type TCardProps = {
-  audioUK: string,
-  audioUS: string,
-  definitions: { definition: string, examples: string[], definition2: any[], examples2: any[] }[],
+  uk: string,
+  us: string,
+  d: { d2: any[], e2: any[] }[],
   handleWordClick: (id: number, word: string) => void,
-  level: string,
-  number: string,
-  partOfSpeech: string,
-  transcription: string,
-  word: string,
+  l: string,
+  n: string,
+  p: string,
+  t: string,
+  w: string,
   isConnected: boolean,
 };
 
@@ -47,15 +47,15 @@ export default class Card extends React.Component<TCardProps, TCardState> {
 
   render() {
     const {
-      audioUK,
-      audioUS,
-      definitions,
+      uk,
+      us,
+      d,
       handleWordClick,
-      level,
-      number,
-      partOfSpeech,
-      transcription,
-      word,
+      l,
+      n,
+      p,
+      t,
+      w,
       isConnected,
     } = this.props;
 
@@ -65,16 +65,16 @@ export default class Card extends React.Component<TCardProps, TCardState> {
     return (
       <View style={[styles.card/*, { backgroundColor: randomBackgroundColor }*/]}>
         {/* <Image style={styles.thumbnail} source={{uri: this.props.image}} /> */}
-        <Text style={styles.word}>{word}</Text>
-        <Text style={styles.text}>{number}</Text>
-        <Text style={styles.text}>{transcription}</Text>
-        {!!partOfSpeech && <Text style={styles.text}>{partOfSpeech}</Text>}
-        {!!level && <Text style={styles.text}>{level}</Text>}
-        <Definitions definitions={definitions} handleWordClick={handleWordClick} />
-        {!!isConnected && !!audioUK && <TouchableOpacity style={styles.button} onPress={() => this._playAndPause(audioUK)}>
+        <Text style={styles.word}>{w}</Text>
+        <Text style={styles.text}>{n}</Text>
+        <Text style={styles.text}>{t}</Text>
+        {!!p && <Text style={styles.text}>{p}</Text>}
+        {!!l && <Text style={styles.text}>{l}</Text>}
+        <Definitions definitions={d} handleWordClick={handleWordClick} />
+        {!!isConnected && !!uk && <TouchableOpacity style={styles.button} onPress={() => this._playAndPause(`/media/english/uk_pron/${uk}`)}>
           <Text style={styles.buttonText}>Play UK</Text>
         </TouchableOpacity>}
-        {!!isConnected && !!audioUS && <TouchableOpacity style={styles.button} onPress={() => this._playAndPause(audioUS)}>
+        {!!isConnected && !!us && <TouchableOpacity style={styles.button} onPress={() => this._playAndPause(`/media/english/us_pron/${us}`)}>
           <Text style={styles.buttonText}>Play US</Text>
         </TouchableOpacity>}
       </View>
